@@ -1,4 +1,12 @@
+#include <stdio.h>
 #include "mesh.h"
+#include "array.h"
+
+mesh_t mesh = {
+	.vertices = NULL,
+	.faces = NULL,
+	.rotation = {.x = 0, .y=0, .z=0}
+};
 
 vec3_t cube_vertices[N_CUBE_VERTICES] = {
 	{.x = -1, .y = -1, .z= -1}, // 1
@@ -31,3 +39,25 @@ face_t cube_faces[N_CUBE_FACES] = {
 	{.a = 6, .b = 8, .c = 1},
 	{.a = 6, .b = 1, .c = 4},
 };
+
+void load_cube_mesh_data(void) {
+	for (int i = 0; i < N_CUBE_VERTICES; ++i) {
+		vec3_t cube_vertex = cube_vertices[i];
+		array_push(mesh.vertices, cube_vertex);
+	}
+
+	for (int i = 0; i < N_CUBE_FACES; ++i) {
+		face_t cube_face = cube_faces[i];
+		array_push(mesh.faces, cube_face);
+	}
+}
+
+void load_obj_file_data(char* filename) {
+	// TODO: Read the contents of the .obj file
+	// and load the vertices and faces in
+	// our mesh.vertices and mesh.faces
+
+	// if v -> mesh.vertices [x y z]
+	// if f -> mesh.faces [v1/vt1/vn1] [v2/vt2/vn2] [v3/vt3/vn3]
+
+}

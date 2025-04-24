@@ -18,14 +18,16 @@ bool create_window(void) {
 	SDL_DisplayMode display_mode;
 	SDL_GetCurrentDisplayMode(0, &display_mode);
 
-	window_width = display_mode.w;
-	window_height = display_mode.h;
+//	window_width = display_mode.w;
+//	window_height = display_mode.h;
+
+
 
 	// Create a SDL window
 	window = SDL_CreateWindow(
 		NULL,
-		SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED,
+        display_mode.w / 2 + 20,
+        20,
 		window_width,
 		window_height,
 		SDL_WINDOW_BORDERLESS
@@ -49,7 +51,6 @@ bool create_window(void) {
 }
 
 void destroy_window(void) {
-	free(color_buffer);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
